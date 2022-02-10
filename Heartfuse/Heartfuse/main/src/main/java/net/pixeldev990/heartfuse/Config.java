@@ -1,26 +1,29 @@
-package com.pixeldev990.fabric.lifesteal;
+package net.pixeldev990.heartfuse;
 
-import com.pixeldev990.fabric.bfapi.Constants;
+
+
+import com.bb1.fabric.bfapi.Constants;
 import com.google.gson.JsonObject;
-
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.pixeldev990.heartfuse.item.ModItems;
 
-/**
- * Copyright 2021 BradBot_1
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 public class Config extends com.bb1.fabric.bfapi.config.Config {
 
-	public Config() { super(new Identifier(Constants.ID, "lifesteal")); }
+	public Config() {
+		super(new Identifier(/*I dont know what to put here */));
+	}
+
+	Object self = (Object) this;
+	public static final String MOD_ID = "lifesteal";
+
+	//ItemGroup
+	public static final ItemGroup LIFESTEAL = FabricItemGroupBuilder.build(
+			new Identifier("lifesteal", "general"),
+			() -> new ItemStack(ModItems.HEART));
 	/** 
 	 * The max health a player can have
 	 * 
@@ -28,20 +31,21 @@ public class Config extends com.bb1.fabric.bfapi.config.Config {
 	 */
 	public double maxHealth = -1D;
 	/** 
-	 * The minimum health a player can have in order to loose hearts
+	 * The minimum health a player can have in order to lose hearts
 	 * 
-	 * @apiNote if a players health is less than or equal to this value the player is unable to loose health
+	 * @apiNote if a player's health is less than or equal to this value the player is unable to lose health
 	 */
 	public double minHealth = 0D;
 	/** When the player looses their last heart they get banned from the server */
 	public boolean banWhenHealthReachesZero = true;
-	/** The amount of health to loose on death */
+	/** The amount of health to lose on death */
 	public double healthToLooseOnDeath = 2D;
-	/** If players should loose health only if the players death was caused by an other player */
+	/** If players should lose health only if the player's death was caused by another player */
 	public boolean looseHealthOnlyOnPlayerRelatedDeath = true;
-	
+
 	public String banReason = "You have been banned due to your health reaching 0!";
 	
 	public JsonObject storage = new JsonObject();
-	
+
+
 }

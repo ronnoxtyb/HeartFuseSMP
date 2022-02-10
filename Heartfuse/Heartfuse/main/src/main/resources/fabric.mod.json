@@ -27,7 +27,7 @@
     ]
   },
   "mixins": [
-    "heartfusesmp.mixins.json"
+    "lifesteal.mixins.json"
   ],
 
   "depends": {

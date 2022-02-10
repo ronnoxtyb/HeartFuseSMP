@@ -1,4 +1,4 @@
-package net.pixeldev990.heartfusesmp.util;
+package net.pixeldev990.heartfuse.util;
 
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
@@ -8,7 +8,7 @@ import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
-import net.pixeldev990.heartfusesmp.item.ModItems;
+import net.pixeldev990.heartfuse.item.ModItems;
 
 public class ModLootTableModifiers {
     private static final Identifier GRASS_BLOCK_ID
@@ -40,7 +40,7 @@ public class ModLootTableModifiers {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.35f)) // Drops 35% of the time
-                        .with(ItemEntry.builder(ModItems.heart))
+                        .with(ItemEntry.builder(ModItems.HEART))
                         .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)).build());
                 supplier.withPool(poolBuilder.build());
             }
@@ -56,7 +56,7 @@ public class ModLootTableModifiers {
 
                 if(IGLOO_STRUCTURE_CHEST_ID.equals(id)) {
 
-                    FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                    poolBuilder = FabricLootPoolBuilder.builder()
                             .rolls(ConstantLootNumberProvider.create(1))
                             .conditionally(RandomChanceLootCondition.builder(1f))
                             .with(ItemEntry.builder(ModItems.HEART))
@@ -65,7 +65,7 @@ public class ModLootTableModifiers {
 
                     if(DESERT_TEMPLE_STRUCTURE_CHEST_ID.equals(id)) {
 
-                        FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                        poolBuilder = FabricLootPoolBuilder.builder()
                                 .rolls(ConstantLootNumberProvider.create(1))
                                 .conditionally(RandomChanceLootCondition.builder(1f))
                                 .with(ItemEntry.builder(ModItems.HEART))
@@ -74,7 +74,7 @@ public class ModLootTableModifiers {
 
                         if(STRONGHOLD_STRUCTURE_CHEST_ID.equals(id)) {
 
-                            FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                            poolBuilder = FabricLootPoolBuilder.builder()
                                     .rolls(ConstantLootNumberProvider.create(1))
                                     .conditionally(RandomChanceLootCondition.builder(1f))
                                     .with(ItemEntry.builder(ModItems.HEART))
@@ -83,7 +83,7 @@ public class ModLootTableModifiers {
 
                             if(TREASURE_BASTION_STRUCTURE_CHEST_ID.equals(id)) {
 
-                                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                                poolBuilder = FabricLootPoolBuilder.builder()
                                         .rolls(ConstantLootNumberProvider.create(1))
                                         .conditionally(RandomChanceLootCondition.builder(1f))
                                         .with(ItemEntry.builder(ModItems.HEART))
@@ -92,13 +92,17 @@ public class ModLootTableModifiers {
 
                                 if(ENDCITY_STRUCTURE_CHEST_ID.equals(id)) {
 
-                                    FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                                    poolBuilder = FabricLootPoolBuilder.builder()
                                             .rolls(ConstantLootNumberProvider.create(1))
                                             .conditionally(RandomChanceLootCondition.builder(1f))
                                             .with(ItemEntry.builder(ModItems.HEART))
                                             .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                                     supplier.withPool(poolBuilder.build());
+                            }
+                        }
+                    }
+                }
             }
-        }));
-    }
+        }
+   }));}
 }

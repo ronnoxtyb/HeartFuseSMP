@@ -1,21 +1,19 @@
-package com.pixeldev990.fabric.lifesteal.mixins;
+package net.pixeldev990.heartfuse.mixins;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import com.pixeldev990.fabric.bfapi.GameObjects;
-import com.pixeldev990.fabric.lifesteal.Config;
-import com.pixeldev990.fabric.lifesteal.Loader;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.server.BannedPlayerEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.pixeldev990.heartfuse.Config;
+import net.pixeldev990.heartfuse.Loader;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
@@ -34,16 +32,6 @@ public abstract class ServerPlayerEntityMixin {
 				updateValueOf((ServerPlayerEntity)entity, -1);
 			}
 		}
-	}
-	
-	@Inject(method = "onSpawn", at = @At("TAIL"))
-	public void onSpawnCheckToBan(CallbackInfo callbackInfo) {
-		ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
-		if (Loader.getConfig().banWhenHealthReachesZero && player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).getBaseValue()<=0) {
-			GameObjects.getMinecraftServer().getPlayerManager().getUserBanList().add(new BannedPlayerEntry(player.getGameProfile(), null, "LifeSteal", null, Loader.getConfig().banReason));
-			player.networkHandler.connection.send(new net.minecraft.network.packet.s2c.play.DisconnectS2CPacket(new LiteralText(Loader.getConfig().banReason)));
-		}
-		updateValueOf(player, 0);
 	}
 	
 	private void updateValueOf(ServerPlayerEntity of, int by) {

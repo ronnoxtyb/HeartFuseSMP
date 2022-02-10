@@ -1,4 +1,4 @@
 /**
  * The main package for the template
  */
-package com.bb1.fabric.lifesteal;
+package net.pixeldev990.heartfuse;
