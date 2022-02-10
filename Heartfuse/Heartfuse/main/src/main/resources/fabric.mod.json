@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "HeartFuse SMP",
+  "version": "${version}",
+
+  "name": "HeartFuse SMP",
+  "description": "Lifesteal Heartfuse Mod",
+  "authors": [
+    "PixelDev990",
+    "BradBot1"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.pixeldev990.heartfusesmp.HeartFuseSMP"
+    ],
+    "client": [
+      "net.pixeldev990.heartfusesmp.HeartFuseSmp"
+    ]
+  },
+  "mixins": [
+    "heartfusesmp.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
